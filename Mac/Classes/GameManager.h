@@ -16,6 +16,8 @@
 	float paddleWidth;
 	
 	float ballRadius;
+    
+    CGSize sceneSize;
 	
     NSMutableArray  *controlManagers;
 }
@@ -23,6 +25,7 @@
 @property	float paddleHeight;
 @property	float paddleWidth;
 @property	float ballRadius;
+@property	CGSize sceneSize;
 @property (retain) NSMutableArray *controlManagers;
 
 +(GameManager*)instance;

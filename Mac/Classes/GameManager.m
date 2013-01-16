@@ -17,6 +17,7 @@ static GameManager* m_GameManagerInstance = nil;
 @synthesize paddleHeight;
 @synthesize ballRadius;
 @synthesize controlManagers;
+@synthesize sceneSize;
 
 +(GameManager*)instance
 {

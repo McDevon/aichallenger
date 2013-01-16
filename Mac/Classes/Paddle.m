@@ -41,7 +41,10 @@ void ccFillPoly( CGPoint *poli, int points, BOOL closePolygon )
 	glEnable(GL_LINE_SMOOTH);
 	glColor4ub(255, 255, 255, 255);
 	glLineWidth(2);
-	CGPoint vertices2[] = { ccp(0,0), ccp(width,0), ccp(width,height), ccp(0,height) };
+	CGPoint vertices2[] = { ccp(-anchorPoint_.x * width, -anchorPoint_.y * height),
+                            ccp((1.0f - anchorPoint_.x ) * width , -anchorPoint_.y * height),
+                            ccp((1.0f - anchorPoint_.x ) * width ,  (1.0f - anchorPoint_.y ) * height),
+                            ccp(-anchorPoint_.x * width,  (1.0f - anchorPoint_.y ) * height) };
 	ccDrawPoly(vertices2, 4, YES);
 }
 

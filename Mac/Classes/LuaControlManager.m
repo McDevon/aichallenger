@@ -186,9 +186,15 @@
 {
     lua_newtable(pl_lua_state);
     
+    // Fix x positions if we are on the right
+    float xPosition = ball.position.x;
+    if (player.side == side_right) {
+        xPosition = [GameManager instance].sceneSize.width - xPosition;
+    }
+    
     // x
     lua_pushliteral(pl_lua_state, "x");
-    lua_pushnumber(pl_lua_state, ball.position.x);
+    lua_pushnumber(pl_lua_state, xPosition);
     lua_settable(pl_lua_state, -3);
     
     // y
@@ -214,9 +220,16 @@
     // Later make this support multiple paddles?
     if ([pl.paddles count] > 0) {
         Paddle *paddle = [pl.paddles objectAtIndex:0];
+        
+        // Fix x positions if we are on the right
+        float xPosition = paddle.position.x;
+        if (player.side == side_right) {
+            xPosition = [GameManager instance].sceneSize.width - xPosition;
+        }
+        
         // x
         lua_pushliteral(pl_lua_state, "x");
-        lua_pushnumber(pl_lua_state, paddle.position.x);
+        lua_pushnumber(pl_lua_state, xPosition);
         lua_settable(pl_lua_state, -3);
         
         // y

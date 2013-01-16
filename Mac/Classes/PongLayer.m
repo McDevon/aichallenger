@@ -39,15 +39,15 @@
 	for (NSObject<ScriptControlManager> *manager in [GameManager instance].controlManagers) {
         
         for (Paddle *paddle in manager.player.paddles) {
-            paddle.anchorPoint = ccp(0.0f, 0.0f);
+            [paddle setAnchorPoint:ccp(0.5f, 0.0f)];
             
             paddle.width = gman.paddleWidth;
             paddle.height = gman.paddleHeight;
             
             if (manager.player.side == side_left) {
-                paddle.position = ccp(0.0f, windowSize.height / 2.0f - (paddle.height / 2.0f));
+                paddle.position = ccp(paddle.width / 2.0f, playAreaSize.height / 2.0f - (paddle.height / 2.0f));
             } else {
-                paddle.position = ccp(windowSize.width - paddle.width, windowSize.height / 2.0f - (paddle.height / 2.0f));
+                paddle.position = ccp(playAreaSize.width - (paddle.width / 2.0f), playAreaSize.height / 2.0f - (paddle.height / 2.0f));
             }
             [self addChild:paddle];
         }
@@ -58,6 +58,7 @@
 {
     GameManager *gman = [GameManager instance];
     
+    [ball setAnchorPoint:ccp(0.5f, 0.5f)];
     [ball setPosition:ccp(playAreaSize.width / 2.0f, playAreaSize.height / 2.0f)];
     
     ball.radius = gman.ballRadius;
@@ -91,6 +92,8 @@
         
 		[[GameManager instance] defaultSettings];
 		
+        [GameManager instance].sceneSize = playAreaSize;
+        
 		// Prepare players
 		self.paddles            = [NSMutableArray array];
 		
