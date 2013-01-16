@@ -16,6 +16,7 @@ static GameManager* m_GameManagerInstance = nil;
 @synthesize paddleWidth;
 @synthesize paddleHeight;
 @synthesize ballRadius;
+@synthesize controlManagers;
 
 +(GameManager*)instance
 {
@@ -23,6 +24,8 @@ static GameManager* m_GameManagerInstance = nil;
 	{
 		if (!m_GameManagerInstance) {
 			m_GameManagerInstance = [[super allocWithZone:NULL] init];
+            
+            m_GameManagerInstance.controlManagers    = [NSMutableArray array];
 		}
 	}
 	return m_GameManagerInstance;
@@ -60,6 +63,25 @@ static GameManager* m_GameManagerInstance = nil;
 
 #pragma mark -
 #pragma mark Game Control
+
+-(void)setSpeed:(float)speed forLuaState:(lua_State*)state
+{
+    for (NSObject<ScriptControlManager> *manager in controlManagers) {
+        if ([manager isKindOfClass:[LuaControlManager class]]) {
+            LuaControlManager *lcmanager = (LuaControlManager*)manager;
+            
+            if (lcmanager.pl_lua_state == state) {
+                // This is the manager we are looking for
+                
+                // Set speed for paddles
+                for (Paddle *paddle in lcmanager.player.paddles) {
+                    paddle.speed = speed;
+                }
+                break;
+            }
+        }
+    }
+}
 
 -(void)defaultSettings
 {

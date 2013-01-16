@@ -10,4 +10,21 @@
 
 @implementation PongState
 
+-(id)init
+{
+    if (self = [super init]) {
+        pl1 = nil;
+        pl2 = nil;
+    }
+    
+    return self;
+}
+
++(id)state
+{
+    PongState * state = [[PongState alloc] init];
+    
+    return [state autorelease];
+}
+
 @end

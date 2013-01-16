@@ -7,19 +7,23 @@
 //
 
 #import "cocos2d.h"
-
+#import "Ball.h"
 
 @interface PongLayer : CCLayer {
 
 	// Size of the window
 	CGSize windowSize;
+    CGSize playAreaSize;
 	
 	NSMutableArray	*paddles;
-    NSMutableArray  *controlManagers;
+    
+    float   updateInterval;
+    float   updateTimer;
+    
+    Ball    *ball;
 }
 
 @property (retain) NSMutableArray *paddles;
-@property (retain) NSMutableArray *controlManagers;
 
 +(CCScene *) scene;
 

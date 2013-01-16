@@ -31,9 +31,10 @@ void ccFillPoly( CGPoint *poli, int points, BOOL closePolygon )
 
 @implementation Paddle
 
+@synthesize name;
 @synthesize width;
 @synthesize height;
-@synthesize side;
+@synthesize speed;
 
 -(void) draw
 {

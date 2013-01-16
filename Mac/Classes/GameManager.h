@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#include "LuaInc.h"
 
 @interface GameManager : NSObject {
 
@@ -17,13 +17,17 @@
 	
 	float ballRadius;
 	
+    NSMutableArray  *controlManagers;
 }
 
 @property	float paddleHeight;
 @property	float paddleWidth;
 @property	float ballRadius;
+@property (retain) NSMutableArray *controlManagers;
 
 +(GameManager*)instance;
+
+-(void)setSpeed:(float)speed forLuaState:(lua_State*)state;
 
 -(void)defaultSettings;
 

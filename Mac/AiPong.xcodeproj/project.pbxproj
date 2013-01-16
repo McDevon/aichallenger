@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C168EEA16A72FCF00ED6E1D /* Player.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C168EE816A72FCF00ED6E1D /* Player.h */; };
+		4C168EEB16A72FCF00ED6E1D /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C168EE916A72FCF00ED6E1D /* Player.m */; };
+		4C168EEE16A7408300ED6E1D /* Ball.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C168EEC16A7408200ED6E1D /* Ball.h */; };
+		4C168EEF16A7408300ED6E1D /* Ball.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C168EED16A7408300ED6E1D /* Ball.m */; };
 		4C3AE1A016A1EBA100C1A925 /* PongLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE19F16A1EBA100C1A925 /* PongLayer.m */; };
 		4C3AE1AA16A1EDE800C1A925 /* Paddle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE1A916A1EDE800C1A925 /* Paddle.m */; };
 		4CC3378816A2C3210077917E /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3378716A2C3210077917E /* GameManager.m */; };
@@ -244,6 +248,10 @@
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		4C168EE816A72FCF00ED6E1D /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		4C168EE916A72FCF00ED6E1D /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		4C168EEC16A7408200ED6E1D /* Ball.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ball.h; sourceTree = "<group>"; };
+		4C168EED16A7408300ED6E1D /* Ball.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ball.m; sourceTree = "<group>"; };
 		4C3AE19E16A1EBA100C1A925 /* PongLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PongLayer.h; sourceTree = "<group>"; };
 		4C3AE19F16A1EBA100C1A925 /* PongLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PongLayer.m; sourceTree = "<group>"; };
 		4C3AE1A816A1EDE800C1A925 /* Paddle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Paddle.h; sourceTree = "<group>"; };
@@ -618,6 +626,10 @@
 				4C3AE1A916A1EDE800C1A925 /* Paddle.m */,
 				4CD921DB16A5E38B00C53D56 /* PongState.h */,
 				4CD921DC16A5E38B00C53D56 /* PongState.m */,
+				4C168EE816A72FCF00ED6E1D /* Player.h */,
+				4C168EE916A72FCF00ED6E1D /* Player.m */,
+				4C168EEC16A7408200ED6E1D /* Ball.h */,
+				4C168EED16A7408300ED6E1D /* Ball.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -1044,6 +1056,8 @@
 				E0B4521212C3AEBE0007F742 /* uthash.h in Headers */,
 				E0B4521312C3AEBE0007F742 /* utlist.h in Headers */,
 				E0B4521412C3AEBE0007F742 /* ZipUtils.h in Headers */,
+				4C168EEA16A72FCF00ED6E1D /* Player.h in Headers */,
+				4C168EEE16A7408300ED6E1D /* Ball.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1210,6 +1224,8 @@
 				E0B4520F12C3AEBE0007F742 /* TGAlib.m in Sources */,
 				E0B4521112C3AEBE0007F742 /* TransformUtils.m in Sources */,
 				E0B4521512C3AEBE0007F742 /* ZipUtils.m in Sources */,
+				4C168EEB16A72FCF00ED6E1D /* Player.m in Sources */,
+				4C168EEF16A7408300ED6E1D /* Ball.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
