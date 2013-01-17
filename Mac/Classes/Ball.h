@@ -14,7 +14,7 @@
     BOOL showAngle;
     
     float radius;
-    float angle;
+    float rotangle;
     
     float curve;
     
@@ -22,14 +22,17 @@
     float ySpeed;
     
     float acceleration;
+	
+	CGPoint previousPosition;
 }
 
 @property   float radius;
 @property   float xSpeed;
 @property   float ySpeed;
 @property   BOOL showAngle;
-@property   float angle;
+@property   float rotangle;
 @property   float curve;
 @property   float acceleration;
+@property   CGPoint previousPosition;
 
 @end

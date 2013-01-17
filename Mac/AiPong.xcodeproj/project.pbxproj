@@ -14,6 +14,7 @@
 		4C3AE1A016A1EBA100C1A925 /* PongLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE19F16A1EBA100C1A925 /* PongLayer.m */; };
 		4C3AE1AA16A1EDE800C1A925 /* Paddle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C3AE1A916A1EDE800C1A925 /* Paddle.m */; };
 		4CC3378816A2C3210077917E /* GameManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC3378716A2C3210077917E /* GameManager.m */; };
+		4CD5A20116A86AC5009C8893 /* Segment.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5A20016A86AC5009C8893 /* Segment.m */; };
 		4CD921A616A5C9BF00C53D56 /* lapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9216416A5C9BF00C53D56 /* lapi.c */; };
 		4CD921A716A5C9BF00C53D56 /* lauxlib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9216616A5C9BF00C53D56 /* lauxlib.c */; };
 		4CD921A816A5C9BF00C53D56 /* lbaselib.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9216816A5C9BF00C53D56 /* lbaselib.c */; };
@@ -46,7 +47,6 @@
 		4CD921C516A5C9BF00C53D56 /* lundump.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9219C16A5C9BF00C53D56 /* lundump.c */; };
 		4CD921C616A5C9BF00C53D56 /* lvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CD9219E16A5C9BF00C53D56 /* lvm.c */; };
 		4CD921C716A5C9BF00C53D56 /* lzio.c in Sources */ = {isa = PBXBuildFile; fileRef = 4CD921A016A5C9BF00C53D56 /* lzio.c */; };
-		4CD921C816A5C9BF00C53D56 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = 4CD921A216A5C9BF00C53D56 /* Makefile */; };
 		4CD921CD16A5D32100C53D56 /* LuaControlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD921CC16A5D32100C53D56 /* LuaControlManager.m */; };
 		4CD921D216A5D64200C53D56 /* test.lua in Resources */ = {isa = PBXBuildFile; fileRef = 4CD921D116A5D64200C53D56 /* test.lua */; };
 		4CD921DD16A5E38B00C53D56 /* PongState.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CD921DC16A5E38B00C53D56 /* PongState.m */; };
@@ -258,6 +258,8 @@
 		4C3AE1A916A1EDE800C1A925 /* Paddle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Paddle.m; sourceTree = "<group>"; };
 		4CC3378616A2C3210077917E /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		4CC3378716A2C3210077917E /* GameManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameManager.m; sourceTree = "<group>"; };
+		4CD5A1FF16A86AC5009C8893 /* Segment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Segment.h; sourceTree = "<group>"; };
+		4CD5A20016A86AC5009C8893 /* Segment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Segment.m; sourceTree = "<group>"; };
 		4CD9216416A5C9BF00C53D56 /* lapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lapi.c; path = lua/lapi.c; sourceTree = "<group>"; };
 		4CD9216516A5C9BF00C53D56 /* lapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lapi.h; path = lua/lapi.h; sourceTree = "<group>"; };
 		4CD9216616A5C9BF00C53D56 /* lauxlib.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lauxlib.c; path = lua/lauxlib.c; sourceTree = "<group>"; };
@@ -315,7 +317,6 @@
 		4CD9219F16A5C9BF00C53D56 /* lvm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lvm.h; path = lua/lvm.h; sourceTree = "<group>"; };
 		4CD921A016A5C9BF00C53D56 /* lzio.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lzio.c; path = lua/lzio.c; sourceTree = "<group>"; };
 		4CD921A116A5C9BF00C53D56 /* lzio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lzio.h; path = lua/lzio.h; sourceTree = "<group>"; };
-		4CD921A216A5C9BF00C53D56 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = lua/Makefile; sourceTree = "<group>"; };
 		4CD921CA16A5CA2800C53D56 /* LuaInc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaInc.h; sourceTree = "<group>"; };
 		4CD921CB16A5D32100C53D56 /* LuaControlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuaControlManager.h; sourceTree = "<group>"; };
 		4CD921CC16A5D32100C53D56 /* LuaControlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuaControlManager.m; sourceTree = "<group>"; };
@@ -630,6 +631,8 @@
 				4C168EE916A72FCF00ED6E1D /* Player.m */,
 				4C168EEC16A7408200ED6E1D /* Ball.h */,
 				4C168EED16A7408300ED6E1D /* Ball.m */,
+				4CD5A1FF16A86AC5009C8893 /* Segment.h */,
+				4CD5A20016A86AC5009C8893 /* Segment.m */,
 			);
 			name = Objects;
 			sourceTree = "<group>";
@@ -706,7 +709,6 @@
 				4CD9219F16A5C9BF00C53D56 /* lvm.h */,
 				4CD921A016A5C9BF00C53D56 /* lzio.c */,
 				4CD921A116A5C9BF00C53D56 /* lzio.h */,
-				4CD921A216A5C9BF00C53D56 /* Makefile */,
 			);
 			name = Lua;
 			sourceTree = "<group>";
@@ -1271,9 +1273,9 @@
 				4CD921C516A5C9BF00C53D56 /* lundump.c in Sources */,
 				4CD921C616A5C9BF00C53D56 /* lvm.c in Sources */,
 				4CD921C716A5C9BF00C53D56 /* lzio.c in Sources */,
-				4CD921C816A5C9BF00C53D56 /* Makefile in Sources */,
 				4CD921CD16A5D32100C53D56 /* LuaControlManager.m in Sources */,
 				4CD921DD16A5E38B00C53D56 /* PongState.m in Sources */,
+				4CD5A20116A86AC5009C8893 /* Segment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

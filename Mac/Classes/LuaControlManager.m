@@ -36,6 +36,145 @@
 }
 
 #pragma mark -
+#pragma mark Lua wrapper functions
+
+static int printMessage (lua_State *lua)
+{
+    //assert (lua_isstring (lua,1));
+    
+    const char *msg = lua_tostring (lua, 1);
+    
+    // debug output
+    NSLog(@"Script: %s", msg);
+    
+    return 0;
+}
+
+static int randomSeed (lua_State *lua)
+{
+    //assert (lua_isstring (lua,1));
+    
+    lua_pushnumber(lua, arc4random() % 10000000);
+    	
+    // debug output
+    //NSLog(@"Script: %s", msg);
+    
+    return 1;
+}
+
+static int setSpeed (lua_State *lua)
+{
+    //assert lua_isnumber(lua, 1);
+    
+    const float newSpeed = lua_tonumber(lua, 1);
+    
+    float fixedSpeed = MAX(MIN(newSpeed, 1.0f), -1.0f);
+    
+    // debug output
+    //NSLog(@"Set new speed to: %.1f, sanitized to: %.1f", newSpeed, fixedSpeed);
+    
+    [[GameManager instance] setSpeed:fixedSpeed forLuaState:lua];
+    
+    return 0;
+}
+
+-(void)pushBallTableToLua:(Ball*)ball
+{
+    lua_newtable(pl_lua_state);
+    
+    // Fix x positions if we are on the right
+    float xPosition = ball.position.x;
+    if (player.side == side_right) {
+        xPosition = [GameManager instance].sceneSize.width - xPosition;
+    }
+    
+    // x
+    lua_pushliteral(pl_lua_state, "x");
+    lua_pushnumber(pl_lua_state, xPosition);
+    lua_settable(pl_lua_state, -3);
+    
+    // y
+    lua_pushliteral(pl_lua_state, "y");
+    lua_pushnumber(pl_lua_state, ball.position.y);
+    lua_settable(pl_lua_state, -3);
+    
+    // radius
+    lua_pushliteral(pl_lua_state, "radius");
+    lua_pushnumber(pl_lua_state, ball.radius);
+    lua_settable(pl_lua_state, -3);
+}
+
+-(void)pushPlayerTableToLua:(Player*)pl
+{
+    lua_newtable(pl_lua_state);
+	
+    // Name
+    lua_pushliteral(pl_lua_state, "name");
+    lua_pushstring(pl_lua_state, [pl.name cStringUsingEncoding:NSASCIIStringEncoding]);
+    lua_settable(pl_lua_state, -3);
+    
+    // Later make this support multiple paddles?
+    if ([pl.paddles count] > 0) {
+        Paddle *paddle = [pl.paddles objectAtIndex:0];
+        
+        // Fix x positions if we are on the right
+        float xPosition = paddle.position.x;
+        if (player.side == side_right) {
+            xPosition = [GameManager instance].sceneSize.width - xPosition;
+        }
+        
+        // x
+        lua_pushliteral(pl_lua_state, "x");
+        lua_pushnumber(pl_lua_state, xPosition);
+        lua_settable(pl_lua_state, -3);
+        
+        // y
+        lua_pushliteral(pl_lua_state, "y");
+        lua_pushnumber(pl_lua_state, paddle.position.y);
+        lua_settable(pl_lua_state, -3);
+        
+        // width
+        lua_pushliteral(pl_lua_state, "width");
+        lua_pushnumber(pl_lua_state, paddle.width);
+        lua_settable(pl_lua_state, -3);
+        
+        // height
+        lua_pushliteral(pl_lua_state, "height");
+        lua_pushnumber(pl_lua_state, paddle.height);
+        lua_settable(pl_lua_state, -3);
+        
+        // speed
+        lua_pushliteral(pl_lua_state, "speed");
+        lua_pushnumber(pl_lua_state, paddle.speed);
+        lua_settable(pl_lua_state, -3);
+    }
+	
+}
+
+
+#pragma mark -
+#pragma mark Lua libraries
+
+static const luaL_Reg lua_libraries [] ={
+	{"base",luaopen_base},
+	{NULL, NULL}
+};
+
+static const luaL_Reg modfuncs [] =
+{
+    { "trace", printMessage },
+    { "setspeed", setSpeed },
+    { "randomnumber", randomSeed },
+    { NULL, NULL }
+};
+
+
+LUAMOD_API int lua_pong (lua_State *L) {
+    luaL_newlib(L, modfuncs);
+    return 1;
+}
+
+#pragma mark -
 #pragma mark Control initialization
 
 -(int)pongInitializePlayer:(Player *)pl file:(NSString *)file
@@ -182,79 +321,6 @@
     return 1;
 }
 
--(void)pushBallTableToLua:(Ball*)ball
-{
-    lua_newtable(pl_lua_state);
-    
-    // Fix x positions if we are on the right
-    float xPosition = ball.position.x;
-    if (player.side == side_right) {
-        xPosition = [GameManager instance].sceneSize.width - xPosition;
-    }
-    
-    // x
-    lua_pushliteral(pl_lua_state, "x");
-    lua_pushnumber(pl_lua_state, xPosition);
-    lua_settable(pl_lua_state, -3);
-    
-    // y
-    lua_pushliteral(pl_lua_state, "y");
-    lua_pushnumber(pl_lua_state, ball.position.y);
-    lua_settable(pl_lua_state, -3);
-    
-    // radius
-    lua_pushliteral(pl_lua_state, "radius");
-    lua_pushnumber(pl_lua_state, ball.radius);
-    lua_settable(pl_lua_state, -3);
-}
-
--(void)pushPlayerTableToLua:(Player*)pl
-{
-    lua_newtable(pl_lua_state);
-
-    // Name
-    lua_pushliteral(pl_lua_state, "name");
-    lua_pushstring(pl_lua_state, [pl.name cStringUsingEncoding:NSASCIIStringEncoding]);
-    lua_settable(pl_lua_state, -3);
-    
-    // Later make this support multiple paddles?
-    if ([pl.paddles count] > 0) {
-        Paddle *paddle = [pl.paddles objectAtIndex:0];
-        
-        // Fix x positions if we are on the right
-        float xPosition = paddle.position.x;
-        if (player.side == side_right) {
-            xPosition = [GameManager instance].sceneSize.width - xPosition;
-        }
-        
-        // x
-        lua_pushliteral(pl_lua_state, "x");
-        lua_pushnumber(pl_lua_state, xPosition);
-        lua_settable(pl_lua_state, -3);
-        
-        // y
-        lua_pushliteral(pl_lua_state, "y");
-        lua_pushnumber(pl_lua_state, paddle.position.y);
-        lua_settable(pl_lua_state, -3);
-        
-        // width
-        lua_pushliteral(pl_lua_state, "width");
-        lua_pushnumber(pl_lua_state, paddle.width);
-        lua_settable(pl_lua_state, -3);
-        
-        // height
-        lua_pushliteral(pl_lua_state, "height");
-        lua_pushnumber(pl_lua_state, paddle.height);
-        lua_settable(pl_lua_state, -3);
-        
-        // speed
-        lua_pushliteral(pl_lua_state, "speed");
-        lua_pushnumber(pl_lua_state, paddle.speed);
-        lua_settable(pl_lua_state, -3);
-    }
-
-}
-
 -(int)pongFinish
 {
     printf("\nDone!\n");
@@ -266,57 +332,6 @@
 -(void)runTest
 {
     
-}
-
-#pragma mark -
-#pragma mark Lua wrapper functions
-
-static int printMessage (lua_State *lua)
-{
-    //assert (lua_isstring (lua,1));
-    
-    const char *msg = lua_tostring (lua, 1);
-    
-    // debug output
-    NSLog(@"Script: %s", msg);
-    
-    return 0;
-}
-
-static int setSpeed (lua_State *lua)
-{
-    //assert lua_isnumber(lua, 1);
-    
-    const float newSpeed = lua_tonumber(lua, 1);
-    
-    float fixedSpeed = MAX(MIN(newSpeed, 1.0f), -1.0f);
-    
-    // debug output
-    //NSLog(@"Set new speed to: %.1f, sanitized to: %.1f", newSpeed, fixedSpeed);
-    
-    [[GameManager instance] setSpeed:fixedSpeed forLuaState:lua];
-    
-    return 0;
-}
-
-#pragma mark -
-#pragma mark Lua libraries
-
-static const luaL_Reg lua_libraries [] ={
-	{"base",luaopen_base},
-	{NULL, NULL}
-};
-
-static const luaL_Reg modfuncs [] =
-{
-    { "trace", printMessage },
-    { "setspeed", setSpeed },
-    { NULL, NULL }
-};
-
-LUAMOD_API int lua_pong (lua_State *L) {
-    luaL_newlib(L, modfuncs);
-    return 1;
 }
 
 

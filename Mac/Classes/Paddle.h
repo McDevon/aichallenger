@@ -8,24 +8,21 @@
 
 #import "cocos2d.h"
 
-typedef enum {
-	side_left,
-	side_right,
-} PaddleSides;
-
 @interface Paddle : CCNode {
     
     NSString    *name;
     
-	CGFloat     width;
-	CGFloat     height;
+	float       width;
+	float       height;
 	
     float       speed;
 }
 
 @property(copy) NSString    *name;
-@property       CGFloat     width;
-@property       CGFloat     height;
+@property       float       width;
+@property       float       height;
 @property       float       speed;
+
+- (NSArray*)getBoundariesForRadius:(float)radius;
 
 @end

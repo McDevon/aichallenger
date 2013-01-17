@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum {
+	side_left,
+	side_right,
+} PaddleSides;
+
 @interface Player : NSObject
 {
     NSString        *name;
